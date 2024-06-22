@@ -1,0 +1,5 @@
+-1, NONE
+0, EXIT
+1, SAVE
+2, LOAD
+3, SETTINGS
