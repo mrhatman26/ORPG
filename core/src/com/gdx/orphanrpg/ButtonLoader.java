@@ -15,7 +15,7 @@ public class ButtonLoader {
     private static void readButtonFile(String buttonFileName){
         StaticMethods.systemMessage("ButtonLoader", "readButtonFile", "Reading " + buttonFileName, true);
         try {
-            buttonFileName = "GUI/" + buttonFileName;
+            buttonFileName = "GUI/ButtonDefs/" + buttonFileName;
             buttonFile = Gdx.files.internal(buttonFileName).file();
             buttonFilerScanner = new Scanner(buttonFile);
             while (buttonFilerScanner.hasNextLine()){
@@ -48,7 +48,7 @@ public class ButtonLoader {
                 for (int i = 0; i < buttonFileSplitContents.length; i++) {
                     StaticMethods.systemMessage("ButtonLoader", "createButtonsFromFile", "buttonFileSplitContents[" + String.valueOf(i) + "] is: " + buttonFileSplitContents[i], true);
                     splitContentsArray = buttonFileSplitContents[i].split(", ");
-                    buttonHandler.createNewButton(splitContentsArray[0], Integer.valueOf(splitContentsArray[1]), Integer.valueOf(splitContentsArray[2]), splitContentsArray[3], Boolean.valueOf(splitContentsArray[4]));
+                    buttonHandler.createNewButton(splitContentsArray[0], Integer.valueOf(splitContentsArray[1]), Integer.valueOf(splitContentsArray[2]), splitContentsArray[3], Boolean.valueOf(splitContentsArray[4]), Integer.valueOf(splitContentsArray[5]));
                 }
                 return true;
             }

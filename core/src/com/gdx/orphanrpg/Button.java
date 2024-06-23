@@ -16,6 +16,7 @@ public class Button {
     private final int HEIGHT = 140;
     private int textWidth;
     private int halfTextWidth;
+    private int guiLayer;
     private boolean pressed;
     private boolean commandExecuted;
     private boolean executeInstantly;
@@ -27,7 +28,7 @@ public class Button {
     private Texture buttonPressedTexture;
     private BitmapFont font;
 
-    Button(String buttonText, int x, int y, BitmapFont font, String command, boolean executeInstantly){
+    Button(String buttonText, int x, int y, BitmapFont font, String command, boolean executeInstantly, int guiLayer){
         this.buttonText = buttonText;
         this.pressed = false;
         this.commandExecuted = false;
@@ -47,10 +48,17 @@ public class Button {
         this.halfTextWidth = textWidth / 2;
         this.command = command;
         this.buttonPressed = false;
+        this.guiLayer = guiLayer;
+    }
+
+    public int getGuiLayer(){
+        return this.guiLayer;
     }
 
     public void update(SpriteBatch spriteBatch, Vector3 mousePos){
-        if (StaticMethods.checkMB(false)){
+        //Button command is still executed when the user takes their mouse off of the button and it is no longer "pressed".
+        //Fix this!
+        if (StaticMethods.checkMB(false) && this.guiLayer == ORPG.guiLayer){
             this.pressed = StaticMethods.checkPosInPos(mousePos, buttonRect.x, buttonRect.y, WIDTH, HEIGHT);
         }
         else{
@@ -61,7 +69,7 @@ public class Button {
             font.draw(spriteBatch, buttonText, buttonRect.x + (HALF_WIDTH - halfTextWidth), buttonRect.y + 85);
             if (!commandExecuted){
                 if (executeInstantly) {
-                    CommandHandler.executeButtonCommand(CommandHandler.getCommandNoFromName(this.command));
+                    CommandHandler.executeButtonCommand(CommandHandler.getCommandNoFromName(this.command), this.guiLayer);
                     commandExecuted = true;
                 }
                 else{
@@ -74,7 +82,7 @@ public class Button {
             font.draw(spriteBatch, buttonText, buttonRect.x + (HALF_WIDTH - halfTextWidth), buttonRect.y + 95); //buttonRect,x + 84
             commandExecuted = false;
             if (buttonPressed){
-                CommandHandler.executeButtonCommand(CommandHandler.getCommandNoFromName(this.command));
+                CommandHandler.executeButtonCommand(CommandHandler.getCommandNoFromName(this.command), this.guiLayer);
                 buttonPressed = false;
             }
         }

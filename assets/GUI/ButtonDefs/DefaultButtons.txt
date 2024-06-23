@@ -1,0 +1,4 @@
+Save, 1509, 497, SAVE, false, 0
+Load, 1509, 344, LOAD, false, 0
+Settings, 1509, 191, SETTINGS, false, 0
+Exit, 1509, 38, EXIT, false, 0

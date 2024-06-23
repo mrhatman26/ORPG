@@ -1,0 +1,4 @@
+Save, 604, 452, SAVE, false, 1
+Save, 951, 452, SAVE, false, 1
+Save, 1298, 452, SAVE, false, 1
+Exit, 951, 243, EXIT, false, 1

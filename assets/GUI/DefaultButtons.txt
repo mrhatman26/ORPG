@@ -1,4 +1,0 @@
-Save, 1509, 497, SAVE, false
-Load, 1509, 344, LOAD, false
-Settings, 1509, 191, SETTINGS, false
-Exit, 1509, 38, EXIT, false

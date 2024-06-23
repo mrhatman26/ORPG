@@ -11,20 +11,21 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 public class ORPG extends ApplicationAdapter {
 	public static boolean debug = true;
+	public static int guiLayer = 0;
 	private SpriteBatch batch;
-	private OrthographicCamera camera;
+	public static OrthographicCamera camera;
 	private Texture GUIBackground;
-	private ButtonLoader buttonLoader;
-	private ButtonHandler buttonHandler;
+	public static ButtonHandler buttonHandler;
+	public static SaveHandler saveHandler;
 	
 	@Override
 	public void create () {
 		this.batch = new SpriteBatch();
-		this.camera = new OrthographicCamera();
-		this.camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		this.GUIBackground = StaticMethods.spriteTest(Gdx.files.internal("GUI/MainGUI.png"));
-		this.buttonHandler = new ButtonHandler();
-		this.buttonHandler.loadButtonsFromFile("DefaultButtons.txt");
+		buttonHandler = new ButtonHandler();
+		buttonHandler.loadButtonsFromFile("DefaultButtons.txt");
 	}
 
 	@Override
@@ -32,7 +33,10 @@ public class ORPG extends ApplicationAdapter {
 		ScreenUtils.clear(0, 0, 0, 1);
 		batch.begin();
 		batch.draw(GUIBackground, 0, 0); //Todo
-		buttonHandler.updateButtons(batch, camera);
+		buttonHandler.updateButtons(batch, 0);
+		if (saveHandler != null){
+			saveHandler.update(batch);
+		}
 		batch.end();
 		camera.update();
 		StaticMethods.miscControls();
@@ -43,5 +47,8 @@ public class ORPG extends ApplicationAdapter {
 		batch.dispose();
 		this.GUIBackground.dispose();
 		buttonHandler.disposeButtons();
+		if (saveHandler != null){
+			saveHandler.dispose();
+		}
 	}
 }

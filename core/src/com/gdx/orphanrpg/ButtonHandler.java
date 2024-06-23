@@ -23,19 +23,21 @@ public class ButtonHandler {
         this.mousePos = new Vector3();
     }
 
-    public void createNewButton(String buttonText, int x, int y, String command, boolean executeInstantly){
-        this.buttons.add(new Button(buttonText, x, y, buttonFont, command, executeInstantly));
+    public void createNewButton(String buttonText, int x, int y, String command, boolean executeInstantly, int guiLayer){
+        this.buttons.add(new Button(buttonText, x, y, buttonFont, command, executeInstantly, guiLayer));
     }
 
     public void loadButtonsFromFile(String buttonFileName){
         ButtonLoader.createButtonsFromFile(this, buttonFileName);
     }
 
-    public void updateButtons(SpriteBatch spriteBatch, OrthographicCamera camera){
+    public void updateButtons(SpriteBatch spriteBatch, int guiLayerToUpdate){
         mousePos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-        camera.unproject(mousePos);
+        ORPG.camera.unproject(mousePos);
         for (Button button: buttons){
-            button.update(spriteBatch, mousePos);
+            if (button.getGuiLayer() == guiLayerToUpdate) {
+                button.update(spriteBatch, mousePos);
+            }
         }
     }
 
