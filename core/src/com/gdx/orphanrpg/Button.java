@@ -81,8 +81,13 @@ public class Button {
             spriteBatch.draw(buttonNormalTexture, buttonRect.x, buttonRect.y);
             font.draw(spriteBatch, buttonText, buttonRect.x + (HALF_WIDTH - halfTextWidth), buttonRect.y + 95); //buttonRect,x + 84
             commandExecuted = false;
-            if (buttonPressed){
-                CommandHandler.executeButtonCommand(CommandHandler.getCommandNoFromName(this.command), this.guiLayer);
+            if (StaticMethods.checkPosInPos(mousePos, buttonRect.x, buttonRect.y, WIDTH, HEIGHT)) {
+                if (buttonPressed) {
+                    CommandHandler.executeButtonCommand(CommandHandler.getCommandNoFromName(this.command), this.guiLayer);
+                    buttonPressed = false;
+                }
+            }
+            else{
                 buttonPressed = false;
             }
         }
