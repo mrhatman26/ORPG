@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import java.util.Map;
+
 public class ORPG extends ApplicationAdapter {
 	public static boolean debug = true;
 	public static int guiLayer = 0;
@@ -26,6 +28,7 @@ public class ORPG extends ApplicationAdapter {
 		this.GUIBackground = StaticMethods.spriteTest(Gdx.files.internal("GUI/MainGUI.png"));
 		buttonHandler = new ButtonHandler();
 		buttonHandler.loadButtonsFromFile("DefaultButtons.txt");
+		MapRenderer.createMap("GUI/Maps/MapDefs/mapOrphanage.txt");
 	}
 
 	@Override
@@ -34,6 +37,7 @@ public class ORPG extends ApplicationAdapter {
 		batch.begin();
 		batch.draw(GUIBackground, 0, 0); //Todo
 		buttonHandler.updateButtons(batch, 0);
+		MapRenderer.updateRooms(batch);
 		if (saveHandler != null){
 			saveHandler.update(batch);
 		}
@@ -50,5 +54,6 @@ public class ORPG extends ApplicationAdapter {
 		if (saveHandler != null){
 			saveHandler.dispose();
 		}
+		MapRenderer.disposeRooms();
 	}
 }
