@@ -2,3 +2,8 @@ Save, 1509, 497, SAVE, false, 0
 Load, 1509, 344, LOAD, false, 0
 Settings, 1509, 191, SETTINGS, false, 0
 Exit, 1509, 38, EXIT, false, 0
+Up, 105, 191, UP, false, 0
+Down, 435, 191, DOWN, false, 0
+Left, 765, 191, LEFT, false, 0
+Right, 1095, 191, RIGHT, false, 0
+Interact, 601, 38, INTERACT, false, 0
