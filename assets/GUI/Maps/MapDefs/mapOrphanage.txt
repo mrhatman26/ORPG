@@ -1,0 +1,2 @@
+Idea for defs:
+room_id, x, y, up_room_id, down_room_id, left_room_id, right_room_id (If room ids are -1 or less, then there is NO connection)
