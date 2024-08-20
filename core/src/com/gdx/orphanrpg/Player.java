@@ -5,9 +5,10 @@ public class Player {
     //Generic RPG stats
     private int playerLevel, playerXP, playerXPToNext, playerHealth, playerHealthMax, playerAttack, playerDefence;
     private int playerClass; //-1 = Unset, 0 = Brawler, 1 = Thief, 2 = Gunner/Tank, 3 = Medic/Diplomat
+    private int mapPos;
     //ToDo
 
-    Player(){
+    Player(int mapPos){
         this.playerName = "Hope";
         this.playerLevel = 1;
         this.playerXP = 0;
@@ -16,5 +17,10 @@ public class Player {
         this.playerHealthMax = 10;
         this.playerAttack = 2;
         this.playerDefence = 8;
+        this.mapPos = mapPos;
+    }
+
+    public int getMapPos(){
+        return this.mapPos;
     }
 }

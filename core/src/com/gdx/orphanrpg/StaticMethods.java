@@ -4,10 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 public class StaticMethods {
+
     public static Texture spriteTest(FileHandle internalPath){
         Texture newTexture;
         try {
@@ -71,4 +76,14 @@ public class StaticMethods {
             }
         }
     }
+
+    /*public static void drawLine(Vector2 lineStart, Vector2 lineEnd, int lineWidth, Color colour, Matrix4 matrix){ //Thank you "Madmenyo"!: https://stackoverflow.com/questions/21835062/libgdx-draw-line
+        Gdx.gl.glLineWidth(lineWidth);
+        ORPG.shapeRenderer.setProjectionMatrix(matrix);
+        ORPG.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        ORPG.shapeRenderer.setColor(colour);
+        ORPG.shapeRenderer.line(lineStart, lineEnd);
+        ORPG.shapeRenderer.end();
+        Gdx.gl.glLineWidth(1);
+    }*/
 }

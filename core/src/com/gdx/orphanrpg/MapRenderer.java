@@ -12,10 +12,10 @@ public class MapRenderer {
         rooms = MapReader.readMapDefFile(mapDefFile);
     }
 
-    public static void updateRooms(SpriteBatch spriteBatch){
+    public static void updateRooms(SpriteBatch spriteBatch, ShapeRenderer shapeRenderer){
         StaticMethods.systemMessage("Wow", "Boo", String.valueOf(rooms.size), true);
         for (Room room: rooms) {
-            room.update(spriteBatch);
+            room.update(spriteBatch, rooms, shapeRenderer);
         }
     }
 
