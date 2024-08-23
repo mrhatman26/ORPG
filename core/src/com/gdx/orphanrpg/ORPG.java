@@ -3,7 +3,7 @@ package com.gdx.orphanrpg;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.GL32;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -26,7 +26,7 @@ public class ORPG extends ApplicationAdapter {
 	public static SaveHandler saveHandler;
 	public static Player player = new Player(0);
 	private ShapeRenderer shapeRenderer;
-	public static GL20 gl = Gdx.graphics.getGL20();
+	public static BitmapFont debugFont;
 	
 	@Override
 	public void create () {
@@ -38,6 +38,12 @@ public class ORPG extends ApplicationAdapter {
 		buttonHandler.loadButtonsFromFile("DefaultButtons.txt");
 		MapRenderer.createMap("GUI/Maps/MapDefs/mapOrphanage.txt");
 		this.shapeRenderer = new ShapeRenderer();
+		if (debug){
+			debugFont = new BitmapFont();
+		}
+		else{
+			debugFont = null;
+		}
 	}
 
 	@Override
@@ -46,10 +52,14 @@ public class ORPG extends ApplicationAdapter {
 		batch.begin();
 		batch.draw(GUIBackground, 0, 0); //Todo
 		buttonHandler.updateButtons(batch, 0);
-		MapRenderer.updateRooms(batch, shapeRenderer);
 		if (saveHandler != null){
 			saveHandler.update(batch);
 		}
+		//Keep save handler ABOVE the MapRenderer!
+		MapRenderer.updateRooms(batch, shapeRenderer, 0, false);
+		batch.end();
+		batch.begin();
+		MapRenderer.updateRooms(batch, shapeRenderer, 0, true);
 		batch.end();
 		camera.update();
 		StaticMethods.miscControls();

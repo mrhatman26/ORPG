@@ -53,7 +53,7 @@ public class MapReader {
             for (String roomDef : mapData) {
                 StaticMethods.systemMessage("MapReader", "createMapFromDef", "Current def is: " + roomDef, true);
                 currentRoomDef = roomDef.split(", ");
-                mapRooms.add(new Room(Integer.parseInt(currentRoomDef[0]), Integer.parseInt(currentRoomDef[1]), Integer.parseInt(currentRoomDef[2]), new Integer[]{Integer.parseInt(currentRoomDef[3]), Integer.parseInt(currentRoomDef[4]), Integer.parseInt(currentRoomDef[5]), Integer.parseInt(currentRoomDef[6])}));
+                mapRooms.add(new Room(Integer.parseInt(currentRoomDef[0]), Integer.parseInt(currentRoomDef[1]), Integer.parseInt(currentRoomDef[2]), new Integer[]{Integer.parseInt(currentRoomDef[3]), Integer.parseInt(currentRoomDef[4]), Integer.parseInt(currentRoomDef[5]), Integer.parseInt(currentRoomDef[6])}, Integer.parseInt(currentRoomDef[7])));
             }
             StaticMethods.systemMessage("MapReader", "createMapFromDef", "Finished creating rooms, returning true", true);
             return true;
