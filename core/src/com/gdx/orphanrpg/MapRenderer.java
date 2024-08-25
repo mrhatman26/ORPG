@@ -14,7 +14,6 @@ public class MapRenderer {
     }
 
     public static void updateRooms(SpriteBatch spriteBatch, ShapeRenderer shapeRenderer, int guiLayerToUpdate, boolean drawLines){
-        StaticMethods.systemMessage("Wow", "Boo", String.valueOf(rooms.size), true);
         for (Room room: rooms) {
             if (room.getGuiLayer() == guiLayerToUpdate) {
                 if (drawLines){
@@ -25,6 +24,15 @@ public class MapRenderer {
                 }
             }
         }
+    }
+
+    public static int getNextRoomID(int currentPos, int direction){
+        for (Room room: rooms){
+            if (room.getRoomID() == currentPos){
+                return room.getNextRoomID(direction);
+            }
+        }
+        return -1;
     }
 
     public static void disposeRooms(){

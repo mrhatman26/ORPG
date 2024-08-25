@@ -64,6 +64,22 @@ public class CommandHandler {
                 case 3: //SETTINGS
                     StaticMethods.systemMessage("CommandHandler", "executeButtonCommand", "Command is SETTINGS", true);
                     return;
+                case 4: //UP
+                    StaticMethods.systemMessage("CommandHandler", "executeButtonCommand", "Command is UP", true);
+                    ORPG.player.moveInDirection(0);
+                    break;
+                case 5: //DOWN
+                    StaticMethods.systemMessage("CommandHandler", "executeButtonCommand", "Command is DOWN", true);
+                    ORPG.player.moveInDirection(1);
+                    break;
+                case 6: //LEFT
+                    StaticMethods.systemMessage("CommandHandler", "executeButtonCommand", "Command is LEFT", true);
+                    ORPG.player.moveInDirection(2);
+                    break;
+                case 7: //RIGHT
+                    StaticMethods.systemMessage("CommandHandler", "executeButtonCommand", "Command is RIGHT", true);
+                    ORPG.player.moveInDirection(3);
+                    break;
                 //break;
                 default:
                     StaticMethods.systemMessage("CommandHandler", "executeButtonCommand", "Unknown command applied to a button, no action taken", true);
